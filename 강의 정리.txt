@@ -1,9 +1,22 @@
 섹션 0
 
-환경 설정
+3. 환경 설정
 - 콘솔 앱 만들기(Server)
 - 솔루션 우클릭 -> 추가 -> 새 프로젝트(ServerCore, DummyClient)
 - DummyClient: 유니티 연동을 하지 않고 테스트할 때 클라이언트 역할
 - Server: 실제로 올릴 서버
 - ServerCore: 필요한 핵심 기능들
 - 솔루션 우클릭 -> 속성 -> 여러 개의 시작 프로젝트 설정: Ctrl+F5로 한 번에 여러 프로젝트 실행 가능
+
+
+섹션 1
+
+2. 쓰레드 생성
+- thread가 많다고 좋은 게 아니다. CPU 코어 수와 최대한 맞춰주는 게 중요하다.
+- 기본적으로 foreground에서 실행되는 thread로 만들어진다. 
+- t.IsBackground = true; => 메인이 종료되면 이 thread가 실행되든 말든 그냥 종료된다.
+- t.Join(); => thread가 종료될 때까지 기다린다.
+- t.Name = "name"; => thread의 이름을 설정한다.
+- ThreadPool: thread의 대기 집합소. 
+  - 장점: thread 생성 개수를 제한할 수 있다.
+  - 단점: 최대 thread 개수만큼 작업 시간이 긴 걸 맡길 경우 먹통이 될 수 있다는 위험이 존재한다. => Task에서 TaskCreationOptions.LongRunning을 인자로 주어 해결할 수 있다.
