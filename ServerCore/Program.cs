@@ -6,27 +6,77 @@ namespace ServerCore
 {
     class Program
     {
+        // 실습 1 + 메모리 배리어 추가
+        /*static int x = 0;
+        static int y = 0;
+        static int r1 = 0;
+        static int r2 = 0;
+
+        static void Thread_1()
+        {
+            y = 1;
+
+            Thread.MemoryBarrier();
+
+            r1 = x;
+        }
+
+        static void Thread_2()
+        {
+            x = 1;
+
+            Thread.MemoryBarrier()
+
+            r2 = y;
+        }
+
         static void Main(string[] args)
         {
-            int[,] arr = new int[10000, 10000];
-
+            int count = 0;
+            while(true)
             {
-                long now = DateTime.Now.Ticks;
-                for (int y = 0; y < 10000;  y++)
-                    for (int x = 0; x < 10000; x++)
-                        arr[y, x] = 1;
-                long end = DateTime.Now.Ticks;
-                Console.WriteLine($"(y, x) 순서 걸린 시간 {end - now}");
+                count++;
+                x = y = 0;
+
+                Task t1 = new Task(Thread_1);
+                Task t2 = new Task(Thread_2);
+                t1.Start();
+                t2.Start();
+
+                Task.WaitAll(t1, t2);
+
+                if (r1 == 0 && r2 == 0)
+                    break;
             }
 
+            Console.WriteLine($"{count}번만에 빠져나옴!");
+        }*/
+
+        // 실습 2
+        int _answer;
+        bool _complete;
+
+        void A()
+        {
+            _answer = 123;
+            Thread.MemoryBarrier();
+            _complete = true;
+            Thread.MemoryBarrier();
+        }
+
+        void B()
+        {
+            Thread.MemoryBarrier();
+            if (_complete )
             {
-                long now = DateTime.Now.Ticks;
-                for (int y = 0; y < 10000; y++)
-                    for (int x = 0; x < 10000; x++)
-                        arr[x, y] = 1;
-                long end = DateTime.Now.Ticks;
-                Console.WriteLine($"(x, y) 순서 걸린 시간 {end - now}");
+                Thread.MemoryBarrier();
+                Console.WriteLine(_answer);
             }
+        }
+
+        static void Main(string[] args)
+        {
+
         }
     }
 }
