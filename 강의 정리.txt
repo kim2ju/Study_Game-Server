@@ -20,3 +20,8 @@
 - ThreadPool: thread의 대기 집합소. 
   - 장점: thread 생성 개수를 제한할 수 있다.
   - 단점: 최대 thread 개수만큼 작업 시간이 긴 걸 맡길 경우 먹통이 될 수 있다는 위험이 존재한다. => Task에서 TaskCreationOptions.LongRunning을 인자로 주어 해결할 수 있다.
+
+3. 컴파일러 최적화
+- thread 클래스의 join == task 클래스의 wait
+- 실제로 배포할 때는 Release 모드로 동작하는데 이러면 온갖 최적화가 들어가서 디버깅하기 더 어려워진다. 코드가 같아도 Debug 모드에서와 다르게 동작할 수 있다.
+- 변수 앞에 volatile을 붙이면 최적화를 하지 않는다.(중요 X, 더 나은 해결책 존재)
