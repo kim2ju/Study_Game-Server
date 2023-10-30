@@ -16,6 +16,8 @@ namespace ServerCore
                 int desired = 1;
                 if (Interlocked.CompareExchange(ref _locked, desired, expected) == expected)
                     break;
+
+                Thread.Yield();
             }
         }
 
