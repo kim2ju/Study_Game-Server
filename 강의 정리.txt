@@ -78,3 +78,6 @@
 - AutoResetEvent: wait 후 자동으로 close 한다. => 더 적절하다. 가장 많이 사용.
 - ManualResetEvent: wait와 close가 따로 동작한다. 
 - Mutex: AutoResetEvent와 비슷하게 동작하나 추가적으로 몇 번을 잠갔는지 카운팅 하는 등 더 많은 정보를 기억하고 있다. => 조금 더 느리다.
+
+13. ReaderWriterLock
+- 특수한 경우에만 락이 동작한다.
