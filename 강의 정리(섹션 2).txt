@@ -17,3 +17,7 @@
 
 6. Session #1
 - AsyncEventArgs를 넣어준 경우 콜백 함수는 자동으로 별도의 쓰레드에서 실행 => 멀티 쓰레드 환경 주의!
+
+7. Session #2
+- 네트워크 송수신에서 성능 문제가 많이 발생
+- sendArgs 재사용하도록 refactor
