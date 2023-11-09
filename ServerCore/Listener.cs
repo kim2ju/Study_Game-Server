@@ -11,7 +11,7 @@ namespace ServerCore
         Socket _listenSocket;
         Action<Socket> _onAcceptHandler;
 
-        public void init(IPEndPoint endPoint, Action<Socket> onAcceptHandler)
+        public void Init(IPEndPoint endPoint, Action<Socket> onAcceptHandler)
         {
             _listenSocket = new Socket(endPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
             _onAcceptHandler = onAcceptHandler;

@@ -15,16 +15,16 @@ namespace ServerCore
         {
             try
             {
-                byte[] recvBuff = new byte[1024];
-                int recvBytes = clientSocket.Receive(recvBuff);
-                string recvData = Encoding.UTF8.GetString(recvBuff, 0, recvBytes);
-                Console.WriteLine($"[From Client] {recvData}");
+                Session session = new Session();
+                session.Start(clientSocket);
 
                 byte[] sendBuff = Encoding.UTF8.GetBytes("Welcome to MMORPG Server!");
-                clientSocket.Send(sendBuff);
+                session.Send(sendBuff);
 
-                clientSocket.Shutdown(SocketShutdown.Both);
-                clientSocket.Close();
+                Thread.Sleep(1000);
+
+                session.Disconnect();
+                session.Disconnect();
             }
             catch (Exception e)
             {
@@ -39,7 +39,7 @@ namespace ServerCore
             IPAddress ipAddr = ipHost.AddressList[0];
             IPEndPoint endPoint = new IPEndPoint(ipAddr, 7777);
 
-            _listener.init(endPoint, OnAcceptHandler);
+            _listener.Init(endPoint, OnAcceptHandler);
             Console.WriteLine("Listening...");
 
             while (true)
