@@ -12,3 +12,7 @@ D:\unity_projects\Server\DummyClient\obj\Debug\net6.0\refint\DummyClient.dll
 D:\unity_projects\Server\DummyClient\obj\Debug\net6.0\DummyClient.pdb
 D:\unity_projects\Server\DummyClient\obj\Debug\net6.0\DummyClient.genruntimeconfig.cache
 D:\unity_projects\Server\DummyClient\obj\Debug\net6.0\ref\DummyClient.dll
+D:\unity_projects\Server\DummyClient\bin\Debug\net6.0\ServerCore.dll
+D:\unity_projects\Server\DummyClient\bin\Debug\net6.0\ServerCore.pdb
+D:\unity_projects\Server\DummyClient\obj\Debug\net6.0\DummyClient.csproj.AssemblyReference.cache
+D:\unity_projects\Server\DummyClient\obj\Debug\net6.0\DummyClient.csproj.CopyComplete
