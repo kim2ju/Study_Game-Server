@@ -42,3 +42,7 @@
 
 12. RecvBuffer
 - readPos, writePos를 통해 받은 데이터를 읽을 offset과 저장할 offset 분리
+
+13. SendBuffer
+- session 내부에 send buffer를 두면 보내는 횟수만큼 복사를 해야 한다는 문제 발생
+- Thread끼리의 경합을 없애기 위해 ThreadLocal로 sendBuffer 생성
